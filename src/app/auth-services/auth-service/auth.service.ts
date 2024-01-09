@@ -17,23 +17,23 @@ export class AuthService {
     return this.http.post(BASIC_URL + "sign-up", signupRequest);
   }
 
-  login(loginRequest: any): Observable<any>{
-    return this.http.post(BASIC_URL + "authenticate", loginRequest, 
-    {observe: 'response'})
-      .pipe(
-        tap(__ => this.log("User Authentication")),
-        map(
-          (res: HttpResponse<any>) => {
-            this.storage.saveUser(res.body);
+  login(email: string, password: string):any{
+    return this.http.post(BASIC_URL + "authenticate", {email, password}, 
+      {observe: 'response'})
+        .pipe(
+          tap(__ => this.log("User Authentication")),
+          map(
+            (res: HttpResponse<any>) => {
+              this.storage.saveUser(res.body);
 
-            const tokenLenght = res.headers.get(AUTH_HEADER).length;
-            const bearerToken = res.headers.get(AUTH_HEADER).substring(7, tokenLenght);
-            this.storage.saveToken(bearerToken);
+              const tokenLenght = res.headers.get(AUTH_HEADER).length;
+              const bearerToken = res.headers.get(AUTH_HEADER).substring(7, tokenLenght);
+              this.storage.saveToken(bearerToken);
 
-            return res;
-          }
-        )
-      );
+              return res;
+            }
+          )
+        );
   }
 
   log(message: string): void{
