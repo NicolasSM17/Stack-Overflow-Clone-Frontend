@@ -45,7 +45,7 @@ export class SignupComponent {
 
         if(response.id != null){
           this.snackBar.open("You're registered successfully!", 'Close',
-                             {duration: 5000});
+                            {duration: 5000});
 
           this.router.navigateByUrl('/login');
         } else{
