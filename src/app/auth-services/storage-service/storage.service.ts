@@ -10,9 +10,12 @@ export class StorageService {
 
   constructor() { }
 
-  public saveUser(user: any){
-    window.localStorage.removeItem(USER);
-    window.localStorage.setItem(USER, JSON.stringify(user));
+  static hasToken(): boolean{
+    if(this.getToken() === null){
+      return false;
+    }
+
+    return true;
   }
 
   public saveToken(token: string){
@@ -24,12 +27,51 @@ export class StorageService {
     return localStorage.getItem(TOKEN);
   }
 
+  public saveUser(user: any){
+    window.localStorage.removeItem(USER);
+    window.localStorage.setItem(USER, JSON.stringify(user));
+  }
+
+  static getUser(): any{
+    return JSON.parse(localStorage.getItem(USER));
+  }
+
   static isUserLoggedIn(){
     if(this.getToken() == null){
       return false;
     } 
 
     return true
+  }
+
+  static getUserId(): string{
+    const user = this.getUser();
+
+    if(user == null){
+      return '';
+    }
+
+    return user.userId;
+  }
+
+  static getUserRole(): string{
+    const user = this.getUser();
+
+    if(user == null){
+      return '';
+    }
+
+    return user.role;
+  }
+
+  static isAdminLoggedIn(): boolean{
+    if(this.getToken === null){
+      return false;
+    }
+
+    const role: string = this.getUserRole();
+
+    return role == '1';
   }
 
   static logout(){
