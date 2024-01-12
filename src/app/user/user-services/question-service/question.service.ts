@@ -20,6 +20,10 @@ export class QuestionService {
     return this.http.post<[]>(BASIC_URL + "api/question", questionDto, {headers: this.createAuthorizationHeader()});
   }
 
+  getAllQuestion(pageNumber: number): Observable<any>{
+    return this.http.get<[]>(BASIC_URL + `api/question/${pageNumber}`, {headers: this.createAuthorizationHeader()});
+  }
+
   createAuthorizationHeader(): HttpHeaders{
     let authHeaders: HttpHeaders = new HttpHeaders();
 
