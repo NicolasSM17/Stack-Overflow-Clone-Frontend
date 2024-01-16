@@ -1,0 +1,15 @@
+<div class="question-card" style="margin-top: 30px;">
+    <h2>{{question.title}}</h2>
+
+    <p>Asked On: <b>{{question.createdDate | date: 'EEEE, MMMM d, y'}}</b> by <b>{{question.username}}</b></p>
+
+    <div class="question-body">
+        <p>Body: {{question.body}}</p>
+
+        <div class="tag-list">
+            <mat-chip-listbox>
+                <mat-chip *ngFor="let tag of question.tags" color="accent">{{tag}}</mat-chip>
+            </mat-chip-listbox>
+        </div>
+    </div>
+</div>

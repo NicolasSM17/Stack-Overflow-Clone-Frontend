@@ -21,7 +21,11 @@ export class QuestionService {
   }
 
   getAllQuestion(pageNumber: number): Observable<any>{
-    return this.http.get<[]>(BASIC_URL + `api/question/${pageNumber}`, {headers: this.createAuthorizationHeader()});
+    return this.http.get<[]>(BASIC_URL + `api/questions/${pageNumber}`, {headers: this.createAuthorizationHeader()});
+  }
+
+  getQuestionById(questionId: number): Observable<any>{
+    return this.http.get<[]>(BASIC_URL + `api/question/${questionId}`, {headers: this.createAuthorizationHeader()});
   }
 
   createAuthorizationHeader(): HttpHeaders{
