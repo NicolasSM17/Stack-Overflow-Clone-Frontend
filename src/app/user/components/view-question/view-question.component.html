@@ -13,3 +13,24 @@
         </div>
     </div>
 </div>
+
+<!-- //////////////////////////////// Post Answer HTML -->
+
+<div class="answer-section" style="margin-top: 30px;">
+    <div>
+        <div>
+            <h2>Post Answer</h2>
+        </div>
+
+        <form [formGroup]="validateForm" (ngSubmit)="addAnswer()">
+            <div class="form-field">
+                <mat-form-field appearance="fill">
+                    <mat-label>Subject</mat-label>
+                    <textarea matInput rows="2" placeholder="Solution ...." formControlName="body"></textarea>
+                </mat-form-field>
+            </div>
+
+            <button mat-raised-button color="accent">Post Your Answer</button>
+        </form>
+    </div>
+</div>
