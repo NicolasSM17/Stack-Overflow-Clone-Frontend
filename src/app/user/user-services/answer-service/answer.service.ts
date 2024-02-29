@@ -13,7 +13,11 @@ export class AnswerService {
   constructor(private http: HttpClient) { }
 
   postAnswer(answerDto: any): Observable<any>{
-    return this.http.post<[]>(BASIC_URL + "api/answer", answerDto, {headers: this.createAuthorizationHeader()})
+    return this.http.post<[]>(BASIC_URL + "api/answer", answerDto, {headers: this.createAuthorizationHeader()});
+  }
+
+  postAnswerImage(file: any, answerId: number):Observable<any>{
+    return this.http.post<[]>(BASIC_URL + `api/image/${answerId}`, file, {headers: this.createAuthorizationHeader()});
   }
 
   createAuthorizationHeader(): HttpHeaders{
