@@ -58,6 +58,23 @@ h2{
     }
 }
 
+/////////////////////////////////////////////// ANSWERS
+
+.answer-card{
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 60%;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 600px){
+    .answer-card{
+        padding: 10px;
+    }
+}
+
 //////////////////////////// Post Answer SCSS
 
 .answer-section{

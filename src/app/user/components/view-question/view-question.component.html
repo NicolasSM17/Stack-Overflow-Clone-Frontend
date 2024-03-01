@@ -1,4 +1,4 @@
-<!-- ///////////////////////////// View Answer HTML-->
+<!-- ///////////////////////////// View Question HTML-->
 
 <div class="question-card" style="margin-top: 30px;" *ngIf="question">
     <h2>{{question.title}}</h2>
@@ -12,6 +12,23 @@
             <mat-chip-listbox>
                 <mat-chip *ngFor="let tag of question.tags" color="accent">{{tag}}</mat-chip>
             </mat-chip-listbox>
+        </div>
+    </div>
+</div>
+
+<!-- ////////////////////////////////////////////////// ANSWERS -->
+
+<div *ngFor="let answer of answers; let i = index" class="answer-card" style="margin-top: 30px;">
+    <h2>Answers</h2>
+    <div>
+        <div>
+            <h5>Answerd by: <b>{{answer.username}}</b> - Answered on: <b>{{answer.createdDate | date: 'MMM d, y, h:mma'}}</b></h5>
+
+            <p>{{answer.body}}</p>
+
+            <div *ngIf="answer.convertedImg">
+                <img [src]="answer.convertedImg"/>
+            </div>
         </div>
     </div>
 </div>

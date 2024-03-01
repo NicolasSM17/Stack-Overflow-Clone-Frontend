@@ -19,6 +19,7 @@ export class ViewQuestionComponent {
   selectedFile: File | null;
   imagePreview: string | ArrayBuffer | null;
   formData: FormData = new FormData();
+  answers = [];
 
   constructor(private questionService: QuestionService, private activatedRoute: ActivatedRoute,
               private formBuilder: FormBuilder, private answerService: AnswerService,
@@ -33,7 +34,16 @@ export class ViewQuestionComponent {
     this.questionService.getQuestionById(this.questionId).subscribe(
       (res) => {
         console.log(res);
+
         this.question = res.questionDto;
+
+        res.answerDTOList.forEach(element => {
+          if(element.file != null){
+            element.convertedImg = 'data:image/jpeg;base64,' + element.file.data;
+          }
+
+          this.answers.push(element);
+        });
       }
     );
   }
