@@ -12,7 +12,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./view-question.component.scss']
 })
 export class ViewQuestionComponent {
-
   questionId: number = this.activatedRoute.snapshot.params["questionId"];
   question: any;
   validateForm: FormGroup;
@@ -72,6 +71,28 @@ export class ViewQuestionComponent {
           this.snackBar.open("Answer posted successfully", "Close", {duration:5000});
         } else{
           this.snackBar.open("Something went wrong", "Close", {duration:5000});
+        }
+      }
+    );
+  }
+
+  addVote(voteType: string){
+    console.log(voteType);
+
+    const data = {
+      voteType: voteType,
+      userId: StorageService.getUserId(),
+      questionId: this.questionId
+    };
+
+    this.questionService.addVoteToQuestion(data).subscribe(
+      (res) => {
+        console.log(res);
+
+        if(res.id != null){
+          this.snackBar.open("Vote added successfully", "Close", {duration: 5000});
+        } else{
+          this.snackBar.open("Something went wrong", "Close", {duration: 5000});
         }
       }
     );
